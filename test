@@ -1,0 +1,12 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract BlockArena {
+    event Battle(address indexed player1, address indexed player2, address winner);
+
+    function fight(address opponent) external {
+        // 随机数仅示例，生产环境需使用链下 or VRF
+        address winner = (block.timestamp % 2 == 0) ? msg.sender : opponent;
+        emit Battle(msg.sender, opponent, winner);
+    }
+}
